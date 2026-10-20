@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone by Shivansh</title>
+    <link rel="stylesheet" href="css/spotifyclone.css">
+    <link rel="stylesheet" href="css/utility.css">
+    <link rel="shortcut icon" href="favicon32.b64ecc03.png" type="image/x-icon">
+</head>
+
+<body>
+    <script src="js/spotifyclone.js"></script>
+    <nav class="bg-black">
+        <img class="invert icons hamburger" src="img/burger-menu-svgrepo-com.svg" alt="">
+        <img class="icons invert" src="img/logo.svg" alt="logo">
+        <!-- <img class="icons invert" src="home.svg" alt="home"> -->
+        <div class="search"><img class="invert lol" height="43px" width="32px" src="img/search.svg" alt="Search">
+            <form action="post"><input type="text" style="color:white;" id="username" name="username" class="searchtype"
+                    placeholder="What do you want to play?"> </form>
+        </div>
+        <ul class="support lol">
+            <li class="touch">Premium</li>
+            <li class="touch">Support</li>
+            <li class="touch">Download</li>
+        </ul>
+        <div class="lol">
+            <h2>|</h2>
+        </div>
+        <div class="access touch lol"><img class="invert" src="img/install.svg" alt="Install"> Install App</div>
+        <button class="access signup touch lol"> Sign up</button>
+        <button class="login access ">Log in</button>
+    </nav>
+    <div class="container flex bg-black">
+        <div class="left ">
+            <!-- <div class="home bg-grey rounded m-1 p-1">
+                <ul>
+                    <li class="font"><img class="invert" src="home.svg" alt="home">Home</li>
+                    <li class="font"><img class="invert" src="search.svg" alt="Search">Search</li>
+                </ul>
+            </div> -->
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <div class="close">
+                        <img class="invert icons" src="img/close-svgrepo-com (1).svg" alt="">
+                    </div>
+                    <h3>Your Library</h3>
+                    <div class="create"><img class="invert" src="img/plus.svg" alt=""> Create</div>
+                </div>
+                <div class="songList font">
+                    <ol>
+                      
+                    </ol>
+                </div>
+                <div class="footer bg-grey m-1">
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/">Legal</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/safetyandprivacy/">Safety & Privacy Center</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/cookies-policy/">Cookies</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">About Ads</a>
+                    </div>
+                    <div>
+                        <a href="https://www.spotify.com/in-en/accessibility/">Accessibility</a>
+                    </div>
+
+                    <div><a href="https://www.spotify.com/legal/cookies-policy/" target="_blank">
+                            Cookies
+                        </a></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="content m-1 bg-grey rounded">
+                <div class="trending">
+                    <h2 class="font">Spotify Playlists</h2>
+                    <div class="cardContainer">
+                    </div>
+                    <div class="playbar">
+                        <div class="seekbar">
+                            <div class="circle">
+                                
+                            </div>
+                        </div>
+                        <div class="songinfo"></div>
+                        <div class="songbtns">
+                            <img id="previous" src="img/previous.png" alt="">
+                            <img id="start"   class="size" src="img/play-button.svg" alt="">
+                            <img id="next" src="img/next.png" alt="">
+                        </div>
+                        <div class="timevol">
+
+                            <div class="songtime"></div>
+                            <div class="volume">
+                                <img id="vol" class="icons" src="img/volume.svg" alt="">
+                                <div class="range">
+                                    <input type="range" name="volume" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
