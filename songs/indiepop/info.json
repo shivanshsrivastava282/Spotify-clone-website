@@ -1,4 +1,11 @@
 {
     "title":"Indie Pop",
+<<<<<<< HEAD
     "description":"Let's Pop"
+=======
+    "description":"Songs for you",
+    "songs":["3 Maybe.mp3",
+"Afterglow Beats.mp3",
+"First Class Private.mp3"]
+>>>>>>> eee22e00f5069d009517f0cde0bdd1e7ddc8c17f
 }

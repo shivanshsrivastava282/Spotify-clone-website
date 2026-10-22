@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
     "title":"Rock",
     "description":"Rocking Mood"
 
+=======
+    "title": "Rock",
+    "description": "Songs for you",
+    "songs": ["Breaking Free.mp3","The Past is in the Past.mp3","escape-your-love-upbeat.mp3","gvidon-medicine.mp3"]
+>>>>>>> eee22e00f5069d009517f0cde0bdd1e7ddc8c17f
 }
