@@ -1,5 +1,5 @@
 {
-    "title":"Rock",
-    "description":"Songs for you"
-
+    "title": "Rock",
+    "description": "Songs for you",
+    "songs": ["Breaking Free.mp3","The Past is in the Past.mp3","escape-your-love-upbeat.mp3","gvidon-medicine.mp3"]
 }
