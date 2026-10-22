@@ -1,6 +1,9 @@
 {
     "title":"Jazz",
-    "description":"Songs for you"
+    "description":"Songs for you",
+    "songs":["Chillhop Jazz Midnight Club.mp3",
+"Chillhop Jazz Sunny Cafe.mp3",
+"Cozy Days.mp3"]
 
 
 }

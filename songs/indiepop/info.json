@@ -1,4 +1,7 @@
 {
     "title":"Indie Pop",
-    "description":"Songs for you"
+    "description":"Songs for you",
+    "songs":["3 Maybe.mp3",
+"Afterglow Beats.mp3",
+"First Class Private.mp3"]
 }

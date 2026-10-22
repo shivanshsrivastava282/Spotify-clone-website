@@ -1,4 +1,7 @@
 {
     "title":"Folk",
-    "description":"Songs for you"
+    "description":"Songs for you",
+    "songs":["Brainwash Therapy.mp3",
+"Quiet Whisper.mp3",
+"Villains Celebration.mp3"]
 }
