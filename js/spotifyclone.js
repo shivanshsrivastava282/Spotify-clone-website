@@ -72,63 +72,117 @@ const playMusic = (track, pause = false) => {
 
 
 }
+
+// async function displayAlbums() {
+//     let a = await fetch(`/songs/`);
+//     let response = await a.text();
+//     console.log(response);
+//     let div = document.createElement("div")
+//     div.innerHTML = response;
+//     // console.log(div)
+//     let anchors = div.getElementsByTagName("a")
+//     let cardContainer = document.querySelector(".cardContainer")
+//     let array = Array.from(anchors)
+//     for (let index = 0; index < array.length; index++) {
+//         const e = array[index];
+
+
+//         // console.log(e.href)
+//         if (e.href.includes("songs")) {
+//             let lol = "/songs/" + e.textContent.trim()
+//             let folder = lol.split("/").slice(-2)[0]
+//             //get the metadata of the folder
+//             let a = await fetch(`/songs/${folder}/info.json`);
+//             let response = await a.json();
+//             console.log(response)
+//             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card rounded">
+//                             <div class="play p-1">
+//                                 <img src="img/play-button.svg" alt="">
+//                             </div>
+//                             <img class="rounded" src=songs/${folder}/conimg1.jpg alt="">
+//                             <div class="font cpadding">${response.title}</div>
+//                             <p class="darkgrey">${response.description}</p>
+//                         </div>`
+
+
+//         }
+//     }
+//     //load the playlist whenever card is clicked
+//     Array.from(document.getElementsByClassName("card")).forEach(e => {
+//         e.addEventListener("click", async item => {
+//             songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
+//             playMusic(decodeURI(songs[0].replace(`/${currfolder}/`, "")))
+//             //   console.log(decodeURI(songs[0].replace(`/songs/${currfolder}/`,"")))
+
+
+
+
+
+//         })
+//     });
+
+
+
+
+// }
+
 async function displayAlbums() {
-    let a = await fetch(`/songs/`);
-    let response = await a.text();
-    console.log(response);
-    let div = document.createElement("div")
-    div.innerHTML = response;
-    // console.log(div)
-    let anchors = div.getElementsByTagName("a")
-    let cardContainer = document.querySelector(".cardContainer")
-    let array = Array.from(anchors)
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
 
+    // List all album folders here
+    let folders = ["cs", "ncs", "folk","indiepop"];
 
-        // console.log(e.href)
-        if (e.href.includes("songs")) {
-            let lol = "/songs/" + e.textContent.trim()
-            let folder = lol.split("/").slice(-2)[0]
-            //get the metadata of the folder
-            let a = await fetch(`/songs/${folder}/info.json`);
-            let response = await a.json();
-            console.log(response)
-            cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card rounded">
-                            <div class="play p-1">
-                                <img src="img/play-button.svg" alt="">
-                            </div>
-                            <img class="rounded" src=songs/${folder}/conimg1.jpg alt="">
-                            <div class="font cpadding">${response.title}</div>
-                            <p class="darkgrey">${response.description}</p>
-                        </div>`
+    let cardContainer = document.querySelector(".cardContainer");
+    cardContainer.innerHTML = "";
 
+    // Display all albums on the page
+    for (const folder of folders) {
 
+        // Get metadata of each folder
+        let a = await fetch(`/songs/${folder}/info.json`);
+
+        if (!a.ok) {
+            console.error(`Could not load info.json for ${folder}`);
+            continue;
         }
+
+        let response = await a.json();
+        console.log(response);
+
+        cardContainer.innerHTML += `
+        <div data-folder="${folder}" class="card rounded">
+            <div class="play p-1">
+                <img src="img/play-button.svg" alt="">
+            </div>
+            <img class="rounded" src="/songs/${folder}/conimg1.jpg" alt="">
+            <div class="font cpadding">${response.title}</div>
+            <p class="darkgrey">${response.description}</p>
+        </div>`;
     }
-    //load the playlist whenever card is clicked
+
+    // Load the playlist whenever an album card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
-            playMusic(decodeURI(songs[0].replace(`/${currfolder}/`, "")))
-            //   console.log(decodeURI(songs[0].replace(`/songs/${currfolder}/`,"")))
 
+            songs = await getSongs(
+                `songs/${item.currentTarget.dataset.folder}`
+            );
 
-
-
-
-        })
+            if (songs.length > 0) {
+                playMusic(
+                    songs[0].replace(`/${currfolder}/`, "")
+                );
+            } else {
+                console.error("No songs found in this album.");
+            }
+        });
     });
-
-
-
 
 }
 
 async function main() {
 
     //get the list of all songs
-    await getSongs(`songs/ncs`);
+    await getSongs(`songs/cs`);
     console.log(songs)
     playMusic(songs[0].replace(`/${currfolder}/`, ""), true)
 
