@@ -38,8 +38,7 @@ async function getSongs(folder) {
 
         if (filename.toLowerCase().endsWith(".mp3")) {
             songs.push(
-                `http://127.0.0.1:3000/${folder}/` +
-                encodeURIComponent(filename)
+                `/${folder}/${filename}`
             );
         }
     }
@@ -49,7 +48,7 @@ async function getSongs(folder) {
         songUL.innerHTML = songUL.innerHTML + `<li>
                             <img class="invert icons" src="img/music-svgrepo-com.svg" alt="">
                             <div class="info">
-                                <div> ${decodeURI(song.replace(`http://127.0.0.1:3000/${folder}/`, ""))}</div>
+                                <div> ${decodeURI(song.replace(`/${folder}/`, ""))}</div>
                                 <div>Shivansh</div>
                             </div>
                             <div class="playnow">
@@ -88,7 +87,7 @@ const playMusic=(track,pause=false)=>{
     
 }
 async function displayAlbums(){
-    let a = await fetch(`http://127.0.0.1:3000/songs/`);
+    let a = await fetch(`/songs/`);
     let response = await a.text();
     console.log(response);
     let div = document.createElement("div")
@@ -103,10 +102,10 @@ async function displayAlbums(){
         
         // console.log(e.href)
         if(e.href.includes("songs")){
-            let lol="http://127.0.0.1:3000/songs/"+ e.textContent.trim()
+            let lol="/songs/"+ e.textContent.trim()
             let folder=lol.split("/").slice(-2)[0]
             //get the metadata of the folder
-            let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`);
+            let a = await fetch(`/songs/${folder}/info.json`);
             let response = await a.json();
             console.log(response)
             cardContainer.innerHTML=cardContainer.innerHTML + ` <div data-folder="${folder}" class="card rounded">
@@ -125,8 +124,8 @@ async function displayAlbums(){
     Array.from(document.getElementsByClassName("card")).forEach(e=> {
        e.addEventListener("click",async item=>{
           songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
-          playMusic(decodeURI(songs[0].replace(`http://127.0.0.1:3000/${currfolder}/`,"")))
-        //   console.log(decodeURI(songs[0].replace(`http://127.0.0.1:3000/songs/${currfolder}/`,"")))
+          playMusic(decodeURI(songs[0].replace(`/${currfolder}/`,"")))
+        //   console.log(decodeURI(songs[0].replace(`/songs/${currfolder}/`,"")))
 
           
           
@@ -145,7 +144,7 @@ async function main() {
     //get the list of all songs
     await getSongs(`songs/ncs`);
     console.log(songs)
-    playMusic(songs[0].replace(`http://127.0.0.1:3000/${currfolder}/`, ""),true)
+    playMusic(songs[0].replace(`/${currfolder}/`, ""),true)
 
     //display all the albums on the page
     displayAlbums()
@@ -217,20 +216,23 @@ async function main() {
     //add an event listener to previous 
     previous.addEventListener("click",()=>{
         console.log("previous clicked")
-        let index=songs.indexOf(currentSong.src)
+        let index=songs.indexOf(`/${currentSong.getAttribute("src")}`)
+        console.log(`/${currentSong.getAttribute("src")}`)
         console.log(songs, index)
         if(index > 0){
-            playMusic(decodeURI(songs[index - 1].replace(`http://127.0.0.1:3000/${currfolder}/`, "")))
+            playMusic((songs[index - 1].replace(`/${currfolder}/`, "")))
             
         }
     })
     //add an event listener to next
     next.addEventListener("click",()=>{
         console.log("next clicked")
-        let index=songs.indexOf(currentSong.src)
+        let index=songs.indexOf(`/${currentSong.getAttribute("src")}`)
+        console.log(currentSong.getAttribute("src"))
         console.log(songs, index)
         if(index < songs.length-1){
-            playMusic(decodeURI(songs[index + 1].replace(`http://127.0.0.1:3000/${currfolder}/`, "")))
+            // playMusic(decodeURI(songs[index + 1].replace(`/${currfolder}/`, "")))
+            playMusic((songs[index + 1].replace(`/${currfolder}/`, "")))
 
         }
 
@@ -247,7 +249,7 @@ async function main() {
 
     //add event listener to mute the track
     vol.addEventListener("click",()=>{
-        if(vol.src=="http://127.0.0.1:3000/img/volume.svg"){
+        if(vol.getAttribute("src")=="img/volume.svg"){
             vol.src="img/mute-svgrepo-com.svg"
             currentSong.volume=0;
             document.querySelector(".range").getElementsByTagName("input")[0].value=0;
