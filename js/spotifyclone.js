@@ -129,7 +129,7 @@ const playMusic = (track, pause = false) => {
 async function displayAlbums() {
 
     // List all album folders here
-    let folders = ["cs", "ncs", "folk","indiepop"];
+    let folders = ["cs", "ncs", "folk","indiepop","folk","cs","indiepop","ncs"];
 
     let cardContainer = document.querySelector(".cardContainer");
     cardContainer.innerHTML = "";
