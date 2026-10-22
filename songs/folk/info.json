@@ -1,11 +1,7 @@
 {
     "title":"Folk",
-<<<<<<< HEAD
-    "description":"Chilling Folk"
-=======
-    "description":"Songs for you",
+    "description":"Chilling Folk",
     "songs":["Brainwash Therapy.mp3",
 "Quiet Whisper.mp3",
 "Villains Celebration.mp3"]
->>>>>>> eee22e00f5069d009517f0cde0bdd1e7ddc8c17f
 }
